@@ -16,6 +16,8 @@
   // A one-step function to destroy the current session
   function destroy_current_session() {
     // TODO destroy the session file completely
+    unset($_SESSION['user_id']);
+    destroy_current_session();
   }
 
   // Performs all actions necessary to log out a user
