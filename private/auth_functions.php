@@ -29,6 +29,13 @@
   // request by comparing it to the user's last login time.
   function last_login_is_recent() {
     // TODO add code to determine if last login is recent
+    if (!isset($_SESSION['last_login'])) {
+      return false;
+    }
+    else if ($_SESSION['last_login'] >= (time() - 60 * 60 * 24)) {
+      return true;
+    }
+  
     return true;
   }
 
