@@ -13,6 +13,10 @@ $password = '';
 
 if(is_post_request()) {
 
+  if (!csrf_token_is_valid()) {
+    $errors[] = "Invalid CSRF tokens.";
+  }
+
   // Confirm that values are present before accessing them.
   if(isset($_POST['username'])) { $username = h($_POST['username']); }
   if(isset($_POST['password'])) { $password = h($_POST['password']); }
@@ -63,6 +67,7 @@ if(is_post_request()) {
   <?php echo display_errors($errors); ?>
 
   <form action="login.php" method="post">
+    <?php csrf_token_tag() ?>
     Username:<br />
     <input type="text" name="username" value="<?php echo $username; ?>" /><br />
     Password:<br />
