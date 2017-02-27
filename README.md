@@ -27,7 +27,7 @@ The following **required** functionality is completed:
 5\. [X]  Required: Complete Logout page.
   * [X]  Required: Add code to destroy the user's session file after logging out.
 
-6\. [ ]  Required: Add CSRF protections to the state forms.
+6\. [X]  Required: Add CSRF protections to the state forms.
   * [X]  Required: Create a CSRF token.
   * [X]  Required: Add CSRF tokens to forms.
   * [X]  Required: Compare tokens against the stored version of the token.
@@ -36,8 +36,8 @@ The following **required** functionality is completed:
   * [X]  Required: Store the CSRF token in the user's session.
   * [X]  Required: Add the same CSRF token to the login form as a hidden input.
   * [X]  Required: When submitted, confirm that session and form tokens match.
-  * [ ]  Required: If tokens do not match, show an error message.
-  * [ ]  Required: Make sure that a logged-in user can use pages as expected.
+  * [X]  Required: If tokens do not match, show an error message.
+  * [X]  Required: Make sure that a logged-in user can use pages as expected.
 
 7\. [ ]  Required: Ensure the application is not vulnerable to XSS attacks.
 
