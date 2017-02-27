@@ -39,43 +39,54 @@ The following **required** functionality is completed:
   * [X]  Required: If tokens do not match, show an error message.
   * [X]  Required: Make sure that a logged-in user can use pages as expected.
 
-7\. [ ]  Required: Ensure the application is not vulnerable to XSS attacks.
+7\. [X]  Required: Ensure the application is not vulnerable to XSS attacks.
 
-8\. [ ]  Required: Ensure the application is not vulnerable to SQL Injection attacks.
+8\. [X]  Required: Ensure the application is not vulnerable to SQL Injection attacks.
 
-9\. [ ]  Required: Run all tests from Objective 1 again and confirm that your application is no longer vulnerable to any test.
+9\. [X]  Required: Run all tests from Objective 1 again and confirm that your application is no longer vulnerable to any test.
 
 
 The following advanced user stories are optional:
 
-* [ ]  Bonus Objective 1: Identify security flaw in Objective #4 (requiring login on staff pages)
-  * [ ]  Identify the security principal not being followed.
-  * [ ]  Write a short description of how the code could be modified to be more secure.
+* [X]  Bonus Objective 1: Identify security flaw in Objective #4 (requiring login on staff pages)
+  * [X]  Identify the security principal not being followed.
 
-* [ ] Bonus Objective 2: Add CSRF protections to all forms in the staff directory
+         I guess it is not following the principal of 'Expect the unexpected'.
+         It is using two cases to define the cases to be false and letting the rest be true.
+         There maybe some corner cases that the hacker can pass through the test in an unexpected way.
 
-* [ ]  Bonus Objective 3: CSRF tokens only valid for 10 minutes.
+  * [X]  Write a short description of how the code could be modified to be more secure.
 
-* [ ]  Bonus Objective 4: Sessions are valid only if user-agent string matches previous value.
+         We could modify it by making it pass through the test under certain situation.
+         Right now we have 2 cases that will return false when either is failed and the rest return true.
+         All we need to do is to reverse the testing, by only returning true when both cases passed and the rest return false.
+         It can make sure that the test will only pass in our expected cases.
 
-* [ ]  Advanced Objective: Set/Get Signed-Encrypted Cookie
-  * [ ]  Create "public/set\_secret\_cookie.php".
-  * [ ]  Create "public/get\_secret\_cookie.php".
-  * [ ]  Encrypt and sign cookie before storing.
-  * [ ]  Verify cookie is signed correctly or show error message.
-  * [ ]  Decrypt cookie.
+* [X] Bonus Objective 2: Add CSRF protections to all forms in the staff directory
+
+* [X]  Bonus Objective 3: CSRF tokens only valid for 10 minutes.
+
+* [X]  Bonus Objective 4: Sessions are valid only if user-agent string matches previous value.
+
+* [X]  Advanced Objective: Set/Get Signed-Encrypted Cookie
+  * [X]  Create "public/set\_secret\_cookie.php".
+  * [X]  Create "public/get\_secret\_cookie.php".
+  * [X]  Encrypt and sign cookie before storing.
+  * [X]  Verify cookie is signed correctly or show error message.
+  * [X]  Decrypt cookie.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+![Screenshot](walkthrough.gif)
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+My computer has some problem that even if mysql is running, it cannot find the local host at all. 
+I need to use the virtual environment (c9.io) to continue the development. 
+The default PHP 5.5.9. Although I have uploaded to PHP 7.0.16-3, I still cannnot run random_bytes().
+I have to use md5() to replace its functionality.
 
 ## License
 

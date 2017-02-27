@@ -12,19 +12,27 @@ $user = db_fetch_assoc($users_result);
 $errors = array();
 
 if(is_post_request()) {
+  if (!request_is_same_domain()) {
+    $errors[] = "Request from different domain.";
+  }
+  if (!csrf_token_is_valid()) {
+    $errors[] = "Invalid CSRF tokens.";
+  }
 
-  // Confirm that values are present before accessing them.
-  if(isset($_POST['first_name'])) { $user['first_name'] = $_POST['first_name']; }
-  if(isset($_POST['last_name'])) { $user['last_name'] = $_POST['last_name']; }
-  if(isset($_POST['username'])) { $user['username'] = $_POST['username']; }
-  if(isset($_POST['email'])) { $user['email'] = $_POST['email']; }
-
-
-  $result = update_user($user);
-  if($result === true) {
-    redirect_to('show.php?id=' . $user['id']);
-  } else {
-    $errors = $result;
+  if (empty($errors)) {
+    // Confirm that values are present before accessing them.
+    if(isset($_POST['first_name'])) { $user['first_name'] = $_POST['first_name']; }
+    if(isset($_POST['last_name'])) { $user['last_name'] = $_POST['last_name']; }
+    if(isset($_POST['username'])) { $user['username'] = $_POST['username']; }
+    if(isset($_POST['email'])) { $user['email'] = $_POST['email']; }
+  
+  
+    $result = update_user($user);
+    if($result === true) {
+      redirect_to('show.php?id=' . $user['id']);
+    } else {
+      $errors = $result;
+    }
   }
 }
 ?>
@@ -39,6 +47,7 @@ if(is_post_request()) {
   <?php echo display_errors($errors); ?>
 
   <form action="edit.php?id=<?php echo h(u($user['id'])); ?>" method="post">
+    <?php echo csrf_token_tag(); ?>
     First name:<br />
     <input type="text" name="first_name" value="<?php echo h($user['first_name']); ?>" /><br />
     Last name:<br />

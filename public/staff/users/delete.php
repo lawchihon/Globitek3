@@ -9,9 +9,18 @@ $users_result = find_user_by_id($_GET['id']);
 $user = db_fetch_assoc($users_result);
 
 if(is_post_request()) {
-  $result = delete_user($user);
-  if($result === true) {
-    redirect_to('index.php');
+  if (!request_is_same_domain()) {
+    $errors[] = "Request from different domain.";
+  }
+  if (!csrf_token_is_valid()) {
+    $errors[] = "Invalid CSRF tokens.";
+  }
+
+  if (empty($errors)) {
+    $result = delete_user($user);
+    if($result === true) {
+      redirect_to('index.php');
+    }
   }
 }
 
@@ -24,7 +33,10 @@ if(is_post_request()) {
 
   <h1>Delete User: <?php echo h($user['first_name']) . " " . h($user['last_name']); ?></h1>
 
+  <?php echo display_errors($errors); ?>
+
   <form action="delete.php?id=<?php echo h(u($user['id'])); ?>" method="post">
+    <?php echo csrf_token_tag(); ?>
     <p>Are you sure you want to <strong>permanently delete</strong> the user:</p>
     <p>
       &bull;&nbsp;<?php echo h($user['first_name']) . " " . h($user['last_name']); ?>

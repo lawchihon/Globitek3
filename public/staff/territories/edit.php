@@ -12,16 +12,24 @@ $territory = db_fetch_assoc($territories_result);
 $errors = array();
 
 if(is_post_request()) {
+  if (!request_is_same_domain()) {
+    $errors[] = "Request from different domain.";
+  }
+  if (!csrf_token_is_valid()) {
+    $errors[] = "Invalid CSRF tokens.";
+  }
 
-  // Confirm that values are present before accessing them.
-  if(isset($_POST['name'])) { $territory['name'] = $_POST['name']; }
-  if(isset($_POST['position'])) { $territory['position'] = $_POST['position']; }
-
-  $result = update_territory($territory);
-  if($result === true) {
-    redirect_to('show.php?id=' . $territory['id']);
-  } else {
-    $errors = $result;
+  if (empty($errors)) {
+    // Confirm that values are present before accessing them.
+    if(isset($_POST['name'])) { $territory['name'] = $_POST['name']; }
+    if(isset($_POST['position'])) { $territory['position'] = $_POST['position']; }
+  
+    $result = update_territory($territory);
+    if($result === true) {
+      redirect_to('show.php?id=' . $territory['id']);
+    } else {
+      $errors = $result;
+    }
   }
 }
 ?>
@@ -36,6 +44,7 @@ if(is_post_request()) {
   <?php echo display_errors($errors); ?>
 
   <form action="edit.php?id=<?php echo h(u($territory['id'])); ?>" method="post">
+    <?php echo csrf_token_tag(); ?>
     Name:<br />
     <input type="text" name="name" value="<?php echo h($territory['name']); ?>" /><br />
     Position:<br />

@@ -177,3 +177,15 @@
 [07-Feb-2017 05:44:34 UTC] PHP Stack trace:
 [07-Feb-2017 05:44:34 UTC] PHP   1. {main}() /home/ubuntu/workspace/public/register.php:0
 [07-Feb-2017 05:44:34 UTC] PHP   2. has_unique_username() /home/ubuntu/workspace/public/register.php:64
+[27-Feb-2017 04:16:14 UTC] PHP Warning:  substr() expects at least 2 parameters, 1 given in /home/ubuntu/workspace/public/get_secret_cookie.php on line 27
+[27-Feb-2017 04:16:14 UTC] PHP Stack trace:
+[27-Feb-2017 04:16:14 UTC] PHP   1. {main}() /home/ubuntu/workspace/public/get_secret_cookie.php:0
+[27-Feb-2017 04:16:14 UTC] PHP   2. substr() /home/ubuntu/workspace/public/get_secret_cookie.php:27
+[27-Feb-2017 04:17:09 UTC] PHP Fatal error:  Call to undefined function subtr() in /home/ubuntu/workspace/public/get_secret_cookie.php on line 27
+[27-Feb-2017 04:17:09 UTC] PHP Stack trace:
+[27-Feb-2017 04:17:09 UTC] PHP   1. {main}() /home/ubuntu/workspace/public/get_secret_cookie.php:0
+[27-Feb-2017 04:21:07 UTC] PHP Parse error:  syntax error, unexpected 'const' (T_CONST) in /home/ubuntu/workspace/public/get_secret_cookie.php on line 27
+[27-Feb-2017 04:21:54 UTC] PHP Fatal error:  Call to undefined function key_decrypt() in /home/ubuntu/workspace/public/get_secret_cookie.php on line 44
+[27-Feb-2017 04:21:54 UTC] PHP Stack trace:
+[27-Feb-2017 04:21:54 UTC] PHP   1. {main}() /home/ubuntu/workspace/public/get_secret_cookie.php:0
+[27-Feb-2017 04:22:14 UTC] PHP Parse error:  syntax error, unexpected ')', expecting ',' or ';' in /home/ubuntu/workspace/public/get_secret_cookie.php on line 44

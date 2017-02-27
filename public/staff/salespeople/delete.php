@@ -9,18 +9,29 @@ $salespeople_result = find_salesperson_by_id($_GET['id']);
 $salesperson = db_fetch_assoc($salespeople_result);
 
 // Set default values for all variables the page needs.
+
 $errors = array();
 
 if(is_post_request()) {
-  if ($_POST['submit'] == "No") {
-    redirect_to('show.php?id=' . u($salesperson['id']));
+  if (!request_is_same_domain()) {
+    $errors[] = "Request from different domain.";
+  }
+  if (!csrf_token_is_valid()) {
+    $errors[] = "Invalid CSRF tokens.";
   }
 
-  $result = delete_salesperson($salesperson);
-  if($result === true) {
-    redirect_to('./index.php');
-  } else {
-    $errors = $result;
+  // If there were no errors, submit data to database
+  if (empty($errors)) {
+    if ($_POST['submit'] == "No") {
+      redirect_to('show.php?id=' . u($salesperson['id']));
+    }
+  
+    $result = delete_salesperson($salesperson);
+    if($result === true) {
+      redirect_to('./index.php');
+    } else {
+      $errors = $result;
+    }
   }
 }
 ?>
