@@ -6,19 +6,19 @@ Time spent: **X** hours spent in total
 
 The following **required** functionality is completed:
 
-1\. [ ]  Required: Test for initial vulnerabilities
+1\. [X]  Required: Test for initial vulnerabilities
 
-2\. [ ]  Required: Configure sessions
-  * [ ]  Required: Only allow session IDs to come from cookies
-  * [ ]  Required: Expire after one day
-  * [ ]  Required: Use cookies which are marked as HttpOnly
+2\. [X]  Required: Configure sessions
+  * [X]  Required: Only allow session IDs to come from cookies
+  * [X]  Required: Expire after one day
+  * [X]  Required: Use cookies which are marked as HttpOnly
 
-3\. [ ]  Required: Complete Login page.
-  * [ ]  Required: Show an error message when username is not found.
-  * [ ]  Required: Show an error message when username is found but password does not match.
-  * [ ]  Required: After login, store user ID in session data.
-  * [ ]  Required: After login, store user last login time in session data.
-  * [ ]  Required: Regenerate the session ID at the appropriate point.
+3\. [X]  Required: Complete Login page.
+  * [X]  Required: Show an error message when username is not found.
+  * [X]  Required: Show an error message when username is found but password does not match.
+  * [X]  Required: After login, store user ID in session data.
+  * [X]  Required: After login, store user last login time in session data.
+  * [X]  Required: Regenerate the session ID at the appropriate point.
 
 4\. [ ]  Required: Require login to access staff area pages.
   * [ ]  Required: Add a login requirement to *almost all* staff area pages.

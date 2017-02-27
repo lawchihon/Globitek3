@@ -5,6 +5,11 @@
   function log_in_user($user) {
     // TODO Store user's ID in session
     // TODO Store last login time in session
+    $_SESSION['user_id'] = $user;
+    $_SESSION['last_login'] = time();
+    $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+
+    session_regenerate_id();
     return true;
   }
 

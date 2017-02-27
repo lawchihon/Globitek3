@@ -14,8 +14,8 @@ $password = '';
 if(is_post_request()) {
 
   // Confirm that values are present before accessing them.
-  if(isset($_POST['username'])) { $username = $_POST['username']; }
-  if(isset($_POST['password'])) { $password = $_POST['password']; }
+  if(isset($_POST['username'])) { $username = h($_POST['username']); }
+  if(isset($_POST['password'])) { $password = h($_POST['password']); }
 
   // Validations
   if (is_blank($username)) {
@@ -39,11 +39,11 @@ if(is_post_request()) {
         redirect_to('index.php');
       } else {
         // Username found, but password does not match.
-        $errors[] = ""; // TODO write an error message
+        $errors[] = "Username and password does not match."; // TODO write an error message
       }
     } else {
       // No username found
-      $errors[] = ""; // TODO write an error message
+      $errors[] = "Username not found."; // TODO write an error message
     }
   }
 }

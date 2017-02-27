@@ -6,6 +6,9 @@ ob_start();
 
 // Enable sessions
 // TODO add configurations
+ini_set("session.use_only_cookies", "1");
+ini_set("session.cookie_lifetime", 60 * 60 * 24);
+ini_set("session.cookie_httponly", "1");
 session_start();
 
 // Turns off any browser built-in XSS protections
